@@ -1,0 +1,47 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+  <div fxFlex="50%" style="border: 1px solid #000000">
+    <mat-card>
+      <mat-card-title>
+        Form User
+      </mat-card-title>
+    </mat-card>
+    <mat-card-content>
+      <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails()">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Full Name" placeholder="Fullname" formControlName="fullname" required>
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('fullname').hasError('required') && (userDetailsForm.get('fullname').dirty || userDetailsForm.get('fullname').touched)">Nama harus diisi</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <input matInput type="email" placeholder="Email" formControlName="email" required>
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('email').hasError('required') && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">Email harus diisi</mat-error>
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('email').hasError('pattern') && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">Format Email tidak sesuai</mat-error>
+              
+
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+            <input matInput type="text" placeholder="Username" formControlName="username" required>
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('username').hasError('required') && (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">Username harus diisi</mat-error>
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('username').hasError('minlength') && (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">Username terlalu pendek</mat-error>
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('username').hasError('pattern') && (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">Username not valid</mat-error>
+              <mat-error class="error-message" *ngIf="userDetailsForm.get('username').hasError('validUsername') && (userDetailsForm.get('username').dirty || userDetailsForm.get('username').touched)">Username tidak diperbolehkan</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Password" formControlName="password" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width">
+          <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password" required>
+          <mat-error class="error-message" *ngIf="userDetailsForm.get('confirm_password').hasError('MatchPassword') && (userDetailsForm.get('confirm_password').dirty || userDetailsForm.get('confirm_password').touched)">Password tidak sama</mat-error>
+
+        </mat-form-field>
+          
+        <br>
+      <button class="submit-btn" color="primary" mat-raised-button type="submit">Submit</button>
+      </form>
+    </mat-card-content>
+  </div>
+</div>
+
